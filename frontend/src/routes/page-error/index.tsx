@@ -1,4 +1,4 @@
-import { Button, EmptyScreen, Layout } from '@edifice.io/react';
+import { Button, EmptyScreen, Layout } from '@open-ent/react';
 import { useTranslation } from 'react-i18next';
 import { useRouteError } from 'react-router-dom';
 

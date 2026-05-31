@@ -9,11 +9,11 @@ import {
   checkUserRight,
   useEdificeClient,
   useTrashedResource,
-} from '@edifice.io/react';
-import { IconRedo, IconUndo } from '@edifice.io/react/icons';
+} from '@open-ent/react';
+import { IconRedo, IconUndo } from '@open-ent/react/icons';
 // @ts-ignore
 import Editor, { useEditor } from '@edifice-wisemapping/editor';
-import { IWebApp, odeServices } from '@edifice.io/client';
+import { IWebApp, odeServices } from '@open-ent/client';
 import { useTranslation } from 'react-i18next';
 import { LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { OptionsType } from '@edifice.io/react';
+import { OptionsType } from '@open-ent/react';
 
 import { exporter } from '~/utils';
 

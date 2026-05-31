@@ -1,4 +1,4 @@
-import { AppParams } from 'ode-explorer/lib';
+import { AppParams } from '@open-ent/explorer/lib';
 
 import { MindmapResourceService } from '~/services/resource';
 import { workflows } from './workflows';

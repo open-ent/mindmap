@@ -6,8 +6,8 @@ import Editor, {
   useEditor,
   // @ts-ignore
 } from '@edifice-wisemapping/editor';
-import { Heading, Image, useEdificeClient } from '@edifice.io/react';
-import { odeServices } from '@edifice.io/client';
+import { Heading, Image, useEdificeClient } from '@open-ent/react';
+import { odeServices } from '@open-ent/client';
 import { LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom';
 
 import { DEFAULT_MAP } from '~/config';
