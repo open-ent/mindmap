@@ -1,4 +1,4 @@
-import { IAction } from '@edifice.io/client';
+import { IAction } from '@open-ent/client';
 import { useQuery } from '@tanstack/react-query';
 
 import { workflows } from '~/config';

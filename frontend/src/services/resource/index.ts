@@ -7,7 +7,7 @@ import {
   ResourceService,
   ResourceType,
   UpdateResult,
-} from '@edifice.io/client';
+} from '@open-ent/client';
 
 const APP = 'mindmap';
 const RESOURCE = 'mindmap';

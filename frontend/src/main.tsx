@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EdificeClientProvider, EdificeThemeProvider } from '@edifice.io/react';
+import { EdificeClientProvider, EdificeThemeProvider } from '@open-ent/react';
 import {
   QueryCache,
   QueryClient,
@@ -11,7 +11,7 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 import './i18n';
 
-import '@edifice.io/bootstrap/dist/index.css';
+import '@open-ent/bootstrap/dist/index.css';
 import { router } from './routes';
 
 const rootElement = document.getElementById('root');
