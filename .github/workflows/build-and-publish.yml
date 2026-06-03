@@ -108,6 +108,11 @@ jobs:
                 <username>$GITHUB_ACTOR</username>
                 <password>$GITHUB_TOKEN</password>
               </server>
+              <server>
+                <id>github-explorer</id>
+                <username>$GITHUB_ACTOR</username>
+                <password>$GITHUB_TOKEN</password>
+              </server>
             </servers>
             <profiles>
               <profile>
@@ -117,6 +122,13 @@ jobs:
                     <id>github</id>
                     <name>GitHub open-ent Packages</name>
                     <url>https://maven.pkg.github.com/open-ent/entcore-v2</url>
+                    <releases><enabled>true</enabled></releases>
+                    <snapshots><enabled>true</enabled></snapshots>
+                  </repository>
+                  <repository>
+                    <id>github-explorer</id>
+                    <name>GitHub open-ent Packages (explorer)</name>
+                    <url>https://maven.pkg.github.com/open-ent/explorer</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                   </repository>
@@ -137,7 +149,7 @@ jobs:
         run: |
           ENTCORE_OPT=""
           if [ -n "$ENTCORE_VERSION" ]; then ENTCORE_OPT="-DentCoreVersion=$ENTCORE_VERSION"; fi
-          mvn clean package -Dmaven.test.skip=true -B $ENTCORE_OPT
+          mvn clean package -DskipTests -B $ENTCORE_OPT
         env:
           ENTCORE_VERSION: ${{ github.event.inputs.entcore_version }}
 
