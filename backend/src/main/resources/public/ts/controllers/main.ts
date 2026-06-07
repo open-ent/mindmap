@@ -12,7 +12,6 @@ import forEach = require("core-js/fn/array/for-each");
 
 declare let mapAdapter: any;
 declare let currentLanguage: any;
-
 declare let saveAs: (data, name, opts?) => void;
 declare let window: any
 //init pupetter config
@@ -643,7 +642,7 @@ export const MindmapController = ng.controller('MindmapController', ['$scope', '
                 $scope.action = 'mindmap-open';
                 $scope.mindmap.readOnly = (!$scope.mindmap.myRights.contrib);
                 template.open('mindmap', 'mindmap-edit');
-                window.location.hash = '/view/' + $scope.mindmap._id;
+                window.location.hash = '/id/' + $scope.mindmap._id;
             });
 
 
