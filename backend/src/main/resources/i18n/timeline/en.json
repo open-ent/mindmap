@@ -1,7 +1,8 @@
 {
-  "timeline.mindmap.has.created.page": "created the mindmap",
-  "timeline.mindmap.has.shared": "shared the mindmap with you",
-  "timeline.mindmap.in": "in the mindmap",
-  "mindmap.notification.shared": "A mental map has been shared with you",
-  "mindmap.notification.shared.two": " a mindmap has been shared"
+  "mindmap": "Mind map",
+  "mindmap.notification.shared": "Mind map: A mind map has been shared with you",
+  "mindmap.share": "Mind map sharing",
+  "timeline.mindmap.has.created.page": "created the mind map",
+  "timeline.mindmap.has.shared": "shared the mind map with you",
+  "timeline.mindmap.in": "in the mind map"
 }
