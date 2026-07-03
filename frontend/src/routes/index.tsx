@@ -6,7 +6,9 @@ import PageError from '~/routes/page-error';
 
 import '~/styles/index.css';
 
-const routes: RouteObject[] = [
+// Exporté pour permettre un montage embarqué (in-layout dashboard, CCTP 51C-2)
+// avec un routeur mémoire — cf. src/mount.tsx.
+export const routes: RouteObject[] = [
   {
     path: '/*',
     async lazy() {

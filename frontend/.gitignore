@@ -2,6 +2,7 @@
 
 # compiled output
 dist
+embed
 tmp
 /out-tsc
 
