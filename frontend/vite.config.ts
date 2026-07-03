@@ -38,11 +38,25 @@ export default ({ mode }: { mode: string }) => {
         changeOrigin: false,
       };
 
+  // Mode « embed » : bundle micro-frontend AUTO-CONTENU (embarque son propre React 18)
+  // exposant mount/unmount pour le montage in-layout dans le dashboard (CCTP 51C-2).
+  const isEmbed = mode === 'embed';
+
   /* Replace "/" the name of your application (e.g : blog | mindmap | collaborativewall) */
   return defineConfig({
-    base: mode === 'production' ? '/mindmap' : '',
+    base: mode === 'production' ? '/mindmap' : isEmbed ? '/mindmap/public/embed/' : '',
     root: __dirname,
     cacheDir: './node_modules/.vite/mindmap',
+    // Le bundle embed embarque React/deps qui lisent `process.env.NODE_ENV` au runtime
+    // (sinon `process is not defined` dans le navigateur).
+    ...(isEmbed
+      ? {
+          define: {
+            'process.env.NODE_ENV': JSON.stringify('production'),
+            'process.env': '{}',
+          },
+        }
+      : {}),
 
     resolve: {
       alias: {
@@ -104,21 +118,37 @@ export default ({ mode }: { mode: string }) => {
       }),
     ],
 
-    build: {
-      outDir: './dist',
-      emptyOutDir: true,
-      reportCompressedSize: true,
-      commonjsOptions: {
-        transformMixedEsModules: true,
-      },
-      assetsDir: 'public',
-      chunkSizeWarningLimit: 5000,
-      rollupOptions: {
-        output: {
-          inlineDynamicImports: true,
+    build: isEmbed
+      ? {
+          // Bundle auto-contenu exposant mount/unmount (entrée src/mount.tsx).
+          outDir: './embed',
+          emptyOutDir: true,
+          commonjsOptions: { transformMixedEsModules: true },
+          lib: {
+            entry: resolve(__dirname, 'src/mount.tsx'),
+            name: 'OpenEntMindmapEmbed',
+            formats: ['es'],
+            fileName: () => 'mindmap.js',
+          },
+          rollupOptions: {
+            output: { inlineDynamicImports: true, entryFileNames: 'mindmap.js' },
+          },
+        }
+      : {
+          outDir: './dist',
+          emptyOutDir: true,
+          reportCompressedSize: true,
+          commonjsOptions: {
+            transformMixedEsModules: true,
+          },
+          assetsDir: 'public',
+          chunkSizeWarningLimit: 5000,
+          rollupOptions: {
+            output: {
+              inlineDynamicImports: true,
+            },
+          },
         },
-      },
-    },
 
     test: {
       watch: false,
