@@ -2,6 +2,7 @@ import { Layout, LoadingScreen, useEdificeClient } from '@open-ent/react';
 import { Outlet, matchPath } from 'react-router-dom';
 
 import { basename } from '..';
+import { useIsEmbedded } from '~/embedded-context';
 
 /** Check old format URL and redirect if needed */
 export const loader = async () => {
@@ -25,8 +26,12 @@ export const loader = async () => {
 
 export function Root() {
   const { init } = useEdificeClient();
+  // En montage in-layout (dashboard), l'hôte fournit le chrome : on masque le <Layout>.
+  const embedded = useIsEmbedded();
 
   if (!init) return <LoadingScreen position={false} />;
+
+  if (embedded) return <Outlet />;
 
   return (
     <Layout>
