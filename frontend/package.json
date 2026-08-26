@@ -38,8 +38,8 @@
     ]
   },
   "dependencies": {
-    "@open-ent/react": "^2.5.29",
-    "@open-ent/client": "^2.5.29",
+    "@open-ent/react": "2.5.30-patched",
+    "@open-ent/client": "2.5.30-patched",
     "@open-ent/bootstrap": "2.5.30-patched",
     "@edifice-wisemapping/editor": "0.7.10",
     "@react-spring/web": "9.7.5",
