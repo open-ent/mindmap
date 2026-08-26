@@ -89,5 +89,13 @@
   "engines": {
     "node": "18 || 20"
   },
+  "pnpm": {
+    "overrides": {
+      "@open-ent/react": "2.5.30-patched",
+      "@open-ent/bootstrap": "2.5.30-patched",
+      "@open-ent/client": "2.5.30-patched",
+      "@open-ent/utilities": "2.5.30-patched"
+    }
+  },
   "nx": {}
 }
