@@ -35,7 +35,7 @@
 
     <properties>
         <entCoreVersion>6.16.14-patched</entCoreVersion>
-        <entCoreLibsVersion>6.16.7-patched</entCoreLibsVersion>
+        <entCoreLibsVersion>6.16.8-patched</entCoreLibsVersion>
         <explorerVersion>2.5.9-patched</explorerVersion>
         <apacheBatikVersion>1.7</apacheBatikVersion>
         <junitVersion>4.13.2</junitVersion>
