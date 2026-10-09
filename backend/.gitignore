@@ -39,3 +39,6 @@ src/main/resources/public/*
 !src/main/resources/public/vendor
 !src/main/resources/public/ts
 !src/main/resources/public/img
+
+# Vue générée par build.sh depuis frontend/dist (hash de bundle à chaque build)
+src/main/resources/view/mindmap.html
