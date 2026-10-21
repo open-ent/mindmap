@@ -2,13 +2,13 @@ import { Suspense, useEffect, useState } from 'react';
 
 import {
   AppHeader,
+  Alert,
   Breadcrumb,
   Button,
   LoadingScreen,
   Tooltip,
   checkUserRight,
   useEdificeClient,
-  useToast,
   useTrashedResource,
 } from '@open-ent/react';
 import { IconRedo, IconUndo } from '@open-ent/react/icons';
@@ -60,7 +60,7 @@ export const Mindmap = () => {
   const { canUpdate, canExport } = useAccessStore();
   const { t } = useTranslation();
 
-  const toast = useToast();
+  const [saveFailed, setSaveFailed] = useState(false);
 
   useTrashedResource(params?.id);
 
@@ -81,10 +81,10 @@ export const Mindmap = () => {
 
   // Sauvegarde refusée par le serveur : on le dit, au lieu de laisser croire à un succès
   useEffect(() => {
-    const onSaveError = () => toast.error(t('mindmap.save.error', { ns: appCode }));
+    const onSaveError = () => setSaveFailed(true);
     globalThis.addEventListener(SAVE_ERROR_EVENT, onSaveError);
     return () => globalThis.removeEventListener(SAVE_ERROR_EVENT, onSaveError);
-  }, [toast, t, appCode]);
+  }, []);
 
   const handleOnEditorSave = () => editor.model.save(true);
 
@@ -94,6 +94,17 @@ export const Mindmap = () => {
   return (
     data?.map && (
       <>
+        {saveFailed && (
+          <Alert
+            type="danger"
+            isDismissible
+            onClose={() => setSaveFailed(false)}
+            className="m-16"
+            style={{ position: 'fixed', zIndex: 1000, top: 70, right: 0 }}
+          >
+            {t('mindmap.save.error', { ns: appCode })}
+          </Alert>
+        )}
         <AppHeader
           style={{ position: 'fixed' }}
           isFullscreen
