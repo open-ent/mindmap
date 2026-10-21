@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 import {
   AppHeader,
@@ -8,6 +8,7 @@ import {
   Tooltip,
   checkUserRight,
   useEdificeClient,
+  useToast,
   useTrashedResource,
 } from '@open-ent/react';
 import { IconRedo, IconUndo } from '@open-ent/react/icons';
@@ -20,6 +21,7 @@ import { LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom';
 import { DEFAULT_MAP } from '~/config';
 import ExportModal from '~/features/export-modal';
 import { mapInfo, persistenceManager } from '~/features/mindmap/configuration';
+import { SAVE_ERROR_EVENT } from '~/features/mindmap/MindmapStorageManager';
 import { useAccessStore } from '~/hooks/useAccessStore';
 import { MindmapProps } from '~/models/mindmap';
 import { getMindmap } from '~/services/api';
@@ -58,6 +60,8 @@ export const Mindmap = () => {
   const { canUpdate, canExport } = useAccessStore();
   const { t } = useTranslation();
 
+  const toast = useToast();
+
   useTrashedResource(params?.id);
 
   const editor = useEditor({
@@ -74,6 +78,13 @@ export const Mindmap = () => {
       data?.name,
     ),
   });
+
+  // Sauvegarde refusée par le serveur : on le dit, au lieu de laisser croire à un succès
+  useEffect(() => {
+    const onSaveError = () => toast.error(t('mindmap.save.error', { ns: appCode }));
+    globalThis.addEventListener(SAVE_ERROR_EVENT, onSaveError);
+    return () => globalThis.removeEventListener(SAVE_ERROR_EVENT, onSaveError);
+  }, [toast, t, appCode]);
 
   const handleOnEditorSave = () => editor.model.save(true);
 

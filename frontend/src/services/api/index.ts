@@ -17,7 +17,13 @@ export const updateMindmap = async (
   url: string,
   mindmapBody: UpdateMindmapProps,
 ) => {
-  return await odeServices.http().putJson(url, mindmapBody);
+  const result = await odeServices.http().putJson(url, mindmapBody);
+  // Le client du socle ne lève pas sur erreur : sans ce contrôle, un 403/500
+  // passait pour une sauvegarde réussie (ex. carte perdue après un 500).
+  if (odeServices.http().isResponseError()) {
+    throw new Error(odeServices.http().latestResponse?.statusText || 'save-error');
+  }
+  return result;
 };
 
 /**

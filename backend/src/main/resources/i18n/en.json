@@ -93,6 +93,7 @@
   "mindmap.or.page.notfound.or.unauthorized": "The mind map or the page requested either does not exist, has been deleted, or you do not have permission to access it.",
   "mindmap.read": "Reader",
   "mindmap.redo": "Redo",
+  "mindmap.save.error": "Saving the mind map failed. Your changes are not saved, please try again.",
   "mindmap.save": "Save",
   "mindmap.submit": "Submit",
   "mindmap.title": "Mind map",

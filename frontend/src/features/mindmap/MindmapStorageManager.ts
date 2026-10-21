@@ -4,6 +4,9 @@ import { DEFAULT_MAP } from '~/config';
 
 import { updateMindmap } from '~/services/api';
 
+/** Événement émis quand la sauvegarde échoue (écouté par l'écran pour afficher un message). */
+export const SAVE_ERROR_EVENT = 'mindmap:save-error';
+
 class MindmapStorageManager extends PersistenceManager {
   private documentUrl: string;
   private mapName: string;
@@ -23,7 +26,9 @@ class MindmapStorageManager extends PersistenceManager {
     };
 
     if (body) {
-      updateMindmap(this.documentUrl, body);
+      updateMindmap(this.documentUrl, body).catch(() => {
+        globalThis.dispatchEvent(new CustomEvent(SAVE_ERROR_EVENT));
+      });
     }
   }
 

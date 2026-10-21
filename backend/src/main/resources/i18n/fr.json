@@ -93,6 +93,7 @@
   "mindmap.or.page.notfound.or.unauthorized": "La carte mentale ou la page demandée n'existe pas, a été supprimée, ou vous n'avez pas les droits pour y accéder.",
   "mindmap.read": "Lecteur",
   "mindmap.redo": "Rétablir",
+  "mindmap.save.error": "La sauvegarde de la carte a échoué. Vos modifications ne sont pas enregistrées, réessayez.",
   "mindmap.save": "Enregistrer",
   "mindmap.submit": "Envoyer",
   "mindmap.title": "Carte mentale",
