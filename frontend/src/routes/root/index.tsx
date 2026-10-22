@@ -1,7 +1,8 @@
 import { Layout, LoadingScreen, useEdificeClient } from '@open-ent/react';
-import { Outlet, matchPath } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import { basename } from '..';
+import { legacyRedirect } from './legacyRedirect';
 import { useIsEmbedded } from '~/embedded-context';
 
 /** Check old format URL and redirect if needed */
@@ -10,11 +11,11 @@ export const loader = async () => {
 
   // Check if the URL is an old format (angular root with hash) and redirect to the new format
   if (hashLocation) {
-    const isMindmapPath = matchPath('/view/:id', hashLocation);
+    // Anciens liens de l'AngularJS : consultation, impression (page et image), dossier. L'impression est la cible du
+    // lien de publication dans la bibliothèque (`/mindmap#/print/png/:id`).
+    const redirectPath = legacyRedirect(hashLocation);
 
-    if (isMindmapPath) {
-      // Redirect to the new format
-      const redirectPath = `/id/${isMindmapPath?.params.id}`;
+    if (redirectPath) {
       location.replace(
         location.origin + basename.replace(/\/$/g, '') + redirectPath,
       );

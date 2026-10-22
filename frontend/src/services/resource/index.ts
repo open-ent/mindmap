@@ -9,6 +9,8 @@ import {
   UpdateResult,
 } from '@open-ent/client';
 
+import { DEFAULT_MAP } from '~/config/default-map';
+
 const APP = 'mindmap';
 const RESOURCE = 'mindmap';
 
@@ -26,7 +28,7 @@ export class MindmapResourceService extends ResourceService {
       description: parameters.description,
       thumbnail,
       folder: parameters.folder,
-      map: `<map version="tango" theme="prism"><topic central="true" text="${parameters.name}"/></map>`,
+      map: DEFAULT_MAP(parameters.name),
       trashed: false,
       visibility: 'OWNER',
     });

@@ -18,6 +18,8 @@ export const useExportMindmap = ({
   const [exportFormat, setExportFormat] = useState<ExportFormat>('jpg');
   const [exportGroup, setExportGroup] = useState<ExportGroup>('image');
   const [zoomToFit, setZoomToFit] = useState<boolean>(true);
+  // L'export a échoué (éditeur absent, carte vide…) : la modale le dit au lieu de ne rien faire.
+  const [failed, setFailed] = useState<boolean>(false);
 
   const imagesOptions = [
     {
@@ -46,6 +48,7 @@ export const useExportMindmap = ({
   ];
 
   const handleOnSubmit = (): void => {
+    setFailed(false);
     setSubmit(true);
   };
 
@@ -96,6 +99,7 @@ export const useExportMindmap = ({
         })
         .catch((fail) => {
           console.error('Unexpected error during export:' + fail);
+          setFailed(true);
         });
     }
     setSubmit(false);
@@ -112,5 +116,6 @@ export const useExportMindmap = ({
     exportGroup,
     exportFormat,
     zoomToFit,
+    failed,
   };
 };

@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   Checkbox,
   FormControl,
@@ -40,6 +41,7 @@ export default function ExportModal({
     exportGroup,
     exportFormat,
     zoomToFit,
+    failed,
   } = useExportMindmap({ mapName, onSuccess: handleOnCancel });
 
   return createPortal(
@@ -48,6 +50,11 @@ export default function ExportModal({
         {t('mindmap.export.modal.title', { ns: appCode })}
       </Modal.Header>
       <Modal.Body>
+        {failed && (
+          <Alert type="danger" className="mb-16">
+            {t('mindmap.export.failed', { ns: appCode })}
+          </Alert>
+        )}
         <FormControl id="export">
           <Radio
             name="export-image"

@@ -6,7 +6,8 @@ import Editor, {
   useEditor,
   // @ts-ignore
 } from '@edifice-wisemapping/editor';
-import { Heading, Image, useEdificeClient } from '@open-ent/react';
+import { Alert, Heading, Image, useEdificeClient } from '@open-ent/react';
+import { useTranslation } from 'react-i18next';
 import { odeServices } from '@open-ent/client';
 import { LoaderFunctionArgs, useLoaderData, useParams } from 'react-router-dom';
 
@@ -58,6 +59,9 @@ export const Mindmap = () => {
     ),
   });
 
+  const [failed, setFailed] = useState<boolean>(false);
+  const { t } = useTranslation();
+
   useEffect(() => {
     //init pupetter config
     // @ts-ignore
@@ -67,8 +71,13 @@ export const Mindmap = () => {
     // init designer
     // @ts-ignore
     const designer: Designer = globalThis.designer;
+    // L'éditeur n'est pas monté : rien à imprimer. Avant, `designer.addEvent` plantait avant le test `if (designer)`.
+    if (!designer) {
+      setFailed(true);
+      return;
+    }
     designer.addEvent('loadSuccess', async () => {
-      if (designer) {
+      try {
         const workspace = designer.getWorkSpace();
         const svgElement = workspace.getSVGElement();
         const size = { width: window.innerWidth, height: window.innerHeight };
@@ -82,9 +91,20 @@ export const Mindmap = () => {
         const imageData = await exporter.exportAndEncode();
         setHrefImage(imageData);
         setTimeout(() => window.print(), 1000);
+      } catch (error) {
+        console.error('Unexpected error during print:' + error);
+        setFailed(true);
       }
     });
   }, []);
+
+  if (failed) {
+    return (
+      <Alert type="danger" className="m-16">
+        {t('mindmap.export.failed')}
+      </Alert>
+    );
+  }
 
   return (
     data?.map && (
