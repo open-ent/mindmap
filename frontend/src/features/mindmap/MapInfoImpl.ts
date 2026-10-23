@@ -34,7 +34,8 @@ class MapInfoImpl implements MapInfo {
   }
 
   setTitle(value: string): void {
-    throw (this.title = value);
+    // (Le `throw` d'origine levait la nouvelle valeur comme une exception : toute modification du titre faisait planter l'appelant.)
+    this.title = value;
   }
 
   isLocked(): boolean {

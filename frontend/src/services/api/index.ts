@@ -9,9 +9,9 @@ export const getMindmap = async (url: string): Promise<MindmapProps> => {
 };
 
 /**
- * sessionHasWorkflowRights API
+ * updateMindmap API
  * @param url
- * @param mindmap body with name and current map
+ * @param mindmapBody name and current map
  */
 export const updateMindmap = async (
   url: string,
@@ -25,21 +25,3 @@ export const updateMindmap = async (
   }
   return result;
 };
-
-/**
- * sessionHasWorkflowRights API
- * @param actionRights
- * @returns check if user has rights
- */
-export const sessionHasWorkflowRights = async (actionRights: string[]) => {
-  return await odeServices.rights().sessionHasWorkflowRights(actionRights);
-};
-
-/**
- * hasResourceRight API
- * @param actionRights
- * @returns check if user has rights
- */
-/* export const hasResourceRight = async () => {
-  return await odeServices.rights().hasResourceRight();
-}; */

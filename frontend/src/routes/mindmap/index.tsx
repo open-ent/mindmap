@@ -137,7 +137,7 @@ export const Mindmap = () => {
                 message={t('mindmap.undo', { ns: appCode })}
                 placement="bottom-end"
               >
-                <button aria-label="undo" onClick={() => designer.undo()}>
+                <button aria-label={t('mindmap.undo', { ns: appCode })} onClick={() => designer.undo()}>
                   <IconUndo width={20} height={20} />
                 </button>
               </Tooltip>
@@ -145,7 +145,7 @@ export const Mindmap = () => {
                 message={t('mindmap.redo', { ns: appCode })}
                 placement="bottom-end"
               >
-                <button onClick={() => designer.redo()} aria-label="redo">
+                <button onClick={() => designer.redo()} aria-label={t('mindmap.redo', { ns: appCode })}>
                   <IconRedo width={20} height={20} />
                 </button>
               </Tooltip>
