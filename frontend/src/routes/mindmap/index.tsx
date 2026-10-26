@@ -95,15 +95,13 @@ export const Mindmap = () => {
     data?.map && (
       <>
         {saveFailed && (
-          <Alert
-            type="danger"
-            isDismissible
-            onClose={() => setSaveFailed(false)}
-            className="m-16"
-            style={{ position: 'fixed', zIndex: 1000, top: 70, right: 0 }}
-          >
-            {t('mindmap.save.error', { ns: appCode })}
-          </Alert>
+          // Le composant Alert du socle ne transmet pas `style` : sans ce conteneur, l'alerte restait dans le flux,
+          // recouverte par l'en-tête fixe de l'éditeur (le message existait mais n'était pas visible).
+          <div style={{ position: 'fixed', zIndex: 2000, top: 80, left: '50%', transform: 'translateX(-50%)', maxWidth: 'calc(100vw - 32px)' }} data-save-error>
+            <Alert type="danger" isDismissible onClose={() => setSaveFailed(false)} className="m-16">
+              {t('mindmap.save.error', { ns: appCode })}
+            </Alert>
+          </div>
         )}
         <AppHeader
           style={{ position: 'fixed' }}
