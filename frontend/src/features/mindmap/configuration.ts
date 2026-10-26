@@ -14,7 +14,9 @@ export const mapInfo: MapInfo = (id: string, name: string): MapInfo =>
 export const persistenceManager: PersistenceManager = (
   url: string,
   mapName: string,
-): PersistenceManager => new MindmapStorageManager(url, mapName);
+  errorMessage?: string,
+): PersistenceManager =>
+  new MindmapStorageManager(url, mapName, errorMessage);
 
 export const options: EditorOptions = (
   mode: string,

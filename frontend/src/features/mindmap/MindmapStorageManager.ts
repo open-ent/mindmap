@@ -10,14 +10,29 @@ export const SAVE_ERROR_EVENT = 'mindmap:save-error';
 class MindmapStorageManager extends PersistenceManager {
   private documentUrl: string;
   private mapName: string;
+  private errorMessage: string;
 
-  constructor(documentUrl: string, mapName: string) {
+  constructor(documentUrl: string, mapName: string, errorMessage = 'Save failed') {
     super();
     this.documentUrl = documentUrl;
     this.mapName = mapName;
+    this.errorMessage = errorMessage;
   }
 
-  saveMapXml(_mapId: string, mapDoc: Document): void {
+  /**
+   * L'éditeur affiche « Enregistrement… » puis attend que le gestionnaire appelle `events.onSuccess()` ou
+   * `events.onError()` : sans cet appel l'indicateur ne s'efface jamais, même quand l'enregistrement a réussi.
+   */
+  saveMapXml(
+    _mapId: string,
+    mapDoc: Document,
+    _pref?: unknown,
+    _saveHistory?: boolean,
+    events?: {
+      onSuccess?: () => void;
+      onError?: (error: { severity: string; message: string; errorType?: string }) => void;
+    },
+  ): void {
     const mapXml = new XMLSerializer().serializeToString(mapDoc);
 
     const body = {
@@ -25,11 +40,25 @@ class MindmapStorageManager extends PersistenceManager {
       map: mapXml,
     };
 
-    if (body) {
-      updateMindmap(this.documentUrl, body).catch(() => {
+    // `then(succès, échec)` et non `then().catch()` : une erreur levée par `onSuccess` ne doit pas passer pour un échec.
+    updateMindmap(this.documentUrl, body).then(
+      () => {
+        try {
+          events?.onSuccess?.();
+        } catch (error) {
+          // L'enregistrement a réussi : un défaut d'affichage de l'éditeur ne doit pas être présenté comme un échec.
+          console.error(error);
+        }
+      },
+      () => {
+        events?.onError?.({
+          severity: 'SEVERE',
+          message: this.errorMessage,
+          errorType: 'generic',
+        });
         globalThis.dispatchEvent(new CustomEvent(SAVE_ERROR_EVENT));
-      });
-    }
+      },
+    );
   }
 
   loadMapDom(): Promise<Document> {

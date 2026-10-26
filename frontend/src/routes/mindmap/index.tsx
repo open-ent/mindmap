@@ -76,6 +76,7 @@ export const Mindmap = () => {
     persistenceManager: persistenceManager(
       `/mindmap/${params?.id}`,
       data?.name,
+      t('mindmap.save.error', { ns: appCode }),
     ),
   });
 
