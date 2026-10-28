@@ -45,7 +45,9 @@ export const explorerConfig: AppParams = {
       id: 'copy',
       workflow: workflows.view,
       target: 'actionbar',
-      right: 'read',
+      // Le serveur n'accepte POST /mindmap/:id/duplicate qu'avec le droit de gestion (mindmap.manager) :
+      // un lecteur verrait sinon un bouton qui échoue en 401.
+      right: 'manager',
     },
     {
       id: 'move',
