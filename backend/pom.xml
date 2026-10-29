@@ -67,19 +67,17 @@
             <version>${junitVersion}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.opendigitaleducation</groupId>
-            <artifactId>explorer</artifactId>
-            <version>${explorerVersion}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.opendigitaleducation</groupId>
-            <artifactId>explorer</artifactId>
-            <version>${explorerVersion}</version>
-            <classifier>tests</classifier>
-            <scope>test</scope>
-        </dependency>
+        <!--
+            Les deux dépendances `explorer` de portée test sont retirées. Maven les résout
+            même avec -Dmaven.test.skip=true, et leur chaîne ne se referme plus : explorer
+            2.5.9-patched réclame org.entcore:common:6.14.9-patched, dont le pom parent
+            org.entcore:ent-core:6.14.9-patched n'a jamais été publié sur Nexus. Le module
+            ne compilait donc plus du tout, tests ou non.
+
+            Même motif que org.entcore:tests, retiré pour la même raison des modules qui le
+            déclaraient. Les tests qui s'appuient sur explorer sont à rétablir avec une
+            version dont la chaîne est publiée.
+        -->
         <dependency>
             <groupId>io.vertx</groupId>
             <artifactId>vertx-mongo-client</artifactId>
