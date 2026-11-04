@@ -1038,14 +1038,14 @@ packages:
     resolution: {integrity: sha512-GawgICVlI9WhwI2AT+HzZ6/39x/vjLgnGwDvjYsZihk+kJKS65UrX0ispE73E9WGQDoT3baDJLImQTMQbT0LLA==, tarball: https://npm.pkg.github.com/download/@open-ent/bootstrap/2.5.30-patched/9546ad07efc6903290ec27c4f77c2115c65b88f6}
 
   '@open-ent/client@2.5.30-patched':
-    resolution: {integrity: sha512-M+63EBTWykwdhL1iPPKD57+Xd1imgz9GTsTb41nv0n6AmbuItggbGUXSj5+uzhf6XpDg+bJ7jnGM9mJrDOCilQ==, tarball: https://npm.pkg.github.com/download/@open-ent/client/2.5.30-patched/4c20377db1b6028283976fa315da3dfc9c0bd763}
+    resolution: {integrity: sha512-IO/1L0aaqhsj1ry+ZL/WzupM5zzxHWtwWaaYCoG7QHS/smMifp5wwELofwMLO1AxjVhokruENPBJCOEeWxl70A==, tarball: https://npm.pkg.github.com/download/@open-ent/client/2.5.30-patched/bb7c142422009089b470b896296dedf6e14979a2}
 
   '@open-ent/explorer@2.5.26':
     resolution: {integrity: sha512-s1yrMhmcE/e5jl5xrK5B+6PK2WEhPg7ZQeWFjVNgwhMslHVKxFmDk96Rm4ijtmnOksp1sDdM4uBcb7iTu5TboQ==, tarball: https://npm.pkg.github.com/download/@open-ent/explorer/2.5.26/603bc7eb7ca6c15e6d0b2effec12df17c7634257}
     engines: {node: 18 || 20}
 
   '@open-ent/react@2.5.30-patched':
-    resolution: {integrity: sha512-BlewkLvu0qUySXXp0LcM8dszPkmKlXDUt0/BOxTWlfZ1/duLSyV30GaL4XUQLjQH4r1/oJ4s7UojAUPUKVVXqg==, tarball: https://npm.pkg.github.com/download/@open-ent/react/2.5.30-patched/41e6e14bd7890f2f992792d28ffabd47851ead28}
+    resolution: {integrity: sha512-nJiiA+HjOI2qeJmJcLFQIxnuj8QdsNdbYPKfaZK+ZIqQ3ILoRzAh9VVkUQagWP0kQj9J3rGanE+pqHaLvrFlQQ==, tarball: https://npm.pkg.github.com/download/@open-ent/react/2.5.30-patched/b7fa5fd28b027467ebb850c1ab55082d87c3bba5}
     peerDependencies:
       '@react-spring/web': 9.7.5
       '@tanstack/react-query': 5.62.7
@@ -4667,7 +4667,7 @@ snapshots:
       '@edifice-wisemapping/core-js': 0.6.7
       '@edifice-wisemapping/web2d': 0.7.7(@edifice-wisemapping/core-js@0.6.7)(jquery@3.6.0)
       '@types/jquery': 3.5.34
-      emoji-picker-react: 4.5.2(react@18.3.1)
+      emoji-picker-react: 4.17.4(react@18.3.1)
       jquery: 3.6.0
       lodash: 4.18.1
       xml-formatter: 2.6.1
@@ -5126,7 +5126,7 @@ snapshots:
 
   '@mui/system@5.18.0(@emotion/react@11.14.0(@types/react@18.3.27)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.27)(react@18.3.1))(@types/react@18.3.27)(react@18.3.1))(@types/react@18.3.27)(react@18.3.1)':
     dependencies:
-      '@babel/runtime': 7.29.7
+      '@babel/runtime': 7.29.10
       '@mui/private-theming': 5.17.1(@types/react@18.3.27)(react@18.3.1)
       '@mui/styled-engine': 5.18.0(@emotion/react@11.14.0(@types/react@18.3.27)(react@18.3.1))(@emotion/styled@11.14.1(@emotion/react@11.14.0(@types/react@18.3.27)(react@18.3.1))(@types/react@18.3.27)(react@18.3.1))(react@18.3.1)
       '@mui/types': 7.2.24(@types/react@18.3.27)
@@ -5146,7 +5146,7 @@ snapshots:
 
   '@mui/utils@5.17.1(@types/react@18.3.27)(react@18.3.1)':
     dependencies:
-      '@babel/runtime': 7.29.7
+      '@babel/runtime': 7.29.10
       '@mui/types': 7.2.24(@types/react@18.3.27)
       '@types/prop-types': 15.7.15
       clsx: 2.1.1
@@ -6722,7 +6722,7 @@ snapshots:
 
   dom-helpers@5.2.1:
     dependencies:
-      '@babel/runtime': 7.29.7
+      '@babel/runtime': 7.29.10
       csstype: 3.2.3
 
   dom-serializer@2.0.0:
@@ -8350,7 +8350,7 @@ snapshots:
 
   react-transition-group@4.4.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      '@babel/runtime': 7.29.7
+      '@babel/runtime': 7.29.10
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
